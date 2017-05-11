@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Http, RequestOptions, Headers, Response} from "@angular/http";
 import {Image} from "../entities/image";
 import {Observable} from "rxjs";
@@ -19,7 +19,8 @@ export class ImageService {
     recoemotionUrl = this.endpoint + "/reco_emotion";
     makeEmotionUrl = this.endpoint + "/make_emotion";
 
-  constructor(private http: Http) { }
+    constructor(private http: Http) {
+    }
 
     convertFiles2Images(files: Array<File>): Array<Image> {
         var images: Array<Image> = [];
@@ -142,7 +143,7 @@ export class ImageService {
     //     return this.http.post(this.recoemotionUrl, reqData, options)
     //         .toPromise()
     //         .then(res => res.json())
-    //         .catch(this.handleError)
+    //         .catch(this.handleError);
     // }
 
     makeEmotion(images, emotion): Promise<any> {

@@ -1,26 +1,25 @@
 import {Component, OnInit, Input, ViewChild, ElementRef} from '@angular/core';
 
 @Component({
-  selector: 'app-video',
-  templateUrl: './video.component.html',
-  styleUrls: ['./video.component.css']
+    selector: 'app-video',
+    templateUrl: './video.component.html',
+    styleUrls: ['./video.component.css']
 })
 export class VideoComponent implements OnInit {
 
-  video;
-  canvas;
-    mediastream;
+    video = null;
+    canvas = null;
+    mediastream = null;
 
-    @Input() private width: number;
+    @Input() width: number;
     height: number;
 
-    videoWidth: number;
-    videoHeight: number;
-    streaming = false;
+    public videoWidth: number;
+    public videoHeight: number;
+    public streaming = false;
     @ViewChild('myvideo') myvideo: ElementRef;
     @ViewChild('mycanvas') mycanvas: ElementRef;
 
-    currentStyles = {};
 
     constructor() {
     }
@@ -44,7 +43,7 @@ export class VideoComponent implements OnInit {
         }
     }
 
-    setupCamera() {
+    public setupCamera() {
         var n = <any>navigator;
         n.mediaDevices.getUserMedia({video: true, audio: false})
             .then(
@@ -60,22 +59,22 @@ export class VideoComponent implements OnInit {
             );
     }
 
-    playCamera() {
+    public playCamera() {
         this.mediastream = null;
         this.setupCamera();
         this.video.play()
     }
 
-    stopCamera() {
+    public stopCamera() {
         this.video.pause();
         this.mediastream.getVideoTracks()[0].stop();
     }
 
-    start() {
+    public start() {
         this.video.play();
     }
 
-    pause() {
+    public pause() {
         this.video.pause();
     }
 

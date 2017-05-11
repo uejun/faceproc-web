@@ -10,16 +10,16 @@ import {FolderSelectComponent} from "../input/folder-select/folder-select.compon
 import * as d3 from "d3";
 
 @Component({
-  selector: 'app-face-reco-emotion',
-  templateUrl: './face-reco-emotion.component.html',
-  styleUrls: ['./face-reco-emotion.component.css']
+    selector: 'app-face-reco-emotion',
+    templateUrl: './face-reco-emotion.component.html',
+    styleUrls: ['./face-reco-emotion.component.css']
 })
 export class FaceRecoEmotionComponent implements OnInit {
 
     // FileSelect Settings
     @ViewChild(FileSelectComponent) fileSelectComp: FileSelectComponent;
 
-     // FolderSelect Settings
+    // FolderSelect Settings
     @ViewChild(FolderSelectComponent) folderSelectComp: FolderSelectComponent;
 
     // Video Settings
@@ -60,16 +60,18 @@ export class FaceRecoEmotionComponent implements OnInit {
         {label: "neutral", color: "#990099"}
     ];
 
-  constructor(private imageService: ImageService) { }
+    constructor(private imageService: ImageService) { }
 
-  ngOnInit() {
-      this.setCurrentStyles();
+    ngOnInit() {
+
+        this.videoWidth = 320;
+        this.setCurrentStyles();
 
         this.createDonut();
         this.createDonutForCamera();
-  }
+    }
 
-  createDonut() {
+    createDonut() {
         var element = this.pieContainer.nativeElement;
         var svgWidth = window.innerWidth / 2;
         var svgHeight = window.innerHeight;
