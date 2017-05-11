@@ -1,0 +1,40 @@
+<h2>RecoEmotion</h2>
+<md-tab-group (selectChange)="onSelectChange($event)">
+    <md-tab label="Still">
+        <md-toolbar>
+            <button md-raised-button (click)="onUploadClick()">Upload me!</button>
+        </md-toolbar>
+        <app-file-select [gridListCols]="1"></app-file-select>
+        <div [ngStyle]="pieCurrentStyles">
+            <div #piegraph class="d3-graph"></div>
+        </div>
+    </md-tab>
+    <md-tab label="Camera">
+        <md-toolbar>
+            <button md-raised-button (click)="onCameraStartPauseClick()">{{StartOrPauseTxt}}</button>
+        </md-toolbar>
+        <div #cameraDiv [ngStyle]="cameraStyles">
+            <app-video [width]="videoWidth"></app-video>
+        </div>
+        <div [ngStyle]="pieCurrentStylesForCamera">
+            <div #pieGraphForCamera class="d3-graph"></div>
+        </div>
+    </md-tab>
+    <md-tab label="Folder">
+        <app-folder-select></app-folder-select>
+        <md-toolbar>
+            <button md-raised-button (click)="onStartProcessClick()">処理開始</button>
+            <button md-raised-button (click)="onDownloadClick()" [disabled]="!doneProgress">結果をダウンロード</button>
+            <button md-raised-button (click)="onClearClick()">クリア</button>
+        </md-toolbar>
+        <label>
+            Current Progress - {{progress}}%
+            <md-progress-bar
+                    class="app-progress"
+                    color="accent"
+                    mode="determinate"
+                    [value]="progress"
+                    aria-label="Determinate progress-bar example"></md-progress-bar>
+        </label>
+    </md-tab>
+</md-tab-group>

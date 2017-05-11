@@ -1,0 +1,8 @@
+<div #inputContainer [ngStyle]="currentStyles">
+    フォルダ選択
+    <input type="file" id="files" (change)="handleFolderSelect($event)" name="files[]" multiple webkitdirectory directory/>
+    <p>{{loadedFiles.length}} Files</p>
+    <!--<md-list>-->
+        <!--<md-list-item *ngFor="let file of loadedFiles">{{file.name}}</md-list-item>-->
+    <!--</md-list>-->
+</div>

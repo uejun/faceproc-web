@@ -1,3 +1,33 @@
-<h1>
-  {{title}}
-</h1>
+<app-header style="font-family: 'Muli', sans-serif;"></app-header>
+<md-sidenav-container [ngStyle]="currentStyles">
+    <md-sidenav mode="side" opened="true">
+        <nav>
+            <h3>menu</h3>
+            <ul style="list-style-type: none">
+                <!--<li>-->
+                    <!--<button #norm id="norm" md-button (click)="onNormClick($event)">Normalize</button>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<button  md-button (click)="onSwapClick($event)">Swap</button>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<button  md-button (click)="onAverageClick($event)">Average</button>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<button  md-button (click)="onCoolClick($event)">Cool&Dirty</button>-->
+                <!--</li>-->
+                <li>
+                    <button  md-button (click)="onRecoEmotionClick($event)">RecoEmotion</button>
+                </li>
+                <!--<li>-->
+                    <!--<button  md-button (click)="onMakeEmotionClick($event)">MakeEmotion</button>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<button  md-button (click)="onViewerClick($event)">FaceDB</button>-->
+                <!--</li>-->
+            </ul>
+        </nav>
+    </md-sidenav>
+
+    <router-outlet></router-outlet>
+</md-sidenav-container>

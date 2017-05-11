@@ -1,0 +1,15 @@
+<div #inputContainer [ngStyle]="currentStyles">
+    <md-grid-list [cols]="gridListCols" [rowHeight]="girdRowHeight">
+        <md-grid-tile
+                *ngFor="let tile of loadedTiles"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows"
+                [style.background]="tile.color">
+            <img [src]="tile.image.data" alt="" [width]="imageWidth" [height]="imageWidth*3/4"/>
+        </md-grid-tile>
+        <md-grid-tile [colspan]="toolTile.cols" [rowspan]="toolTile.rows" style="background-color: #edeeef">
+            <!--<app-file-select #file_select (onLoaded)="onLoaded($event)"></app-file-select>-->
+            <input type="file" id="files" (change)="handleFileSelect($event)" name="files[]" multiple />
+        </md-grid-tile>
+    </md-grid-list>
+</div>
