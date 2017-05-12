@@ -139,8 +139,7 @@ export class FaceRecoEmotionComponent implements OnInit {
     }
 
     // フォルダモードにおいて, 一枚の画像を読み込み、感情認識をリクエストする関数
-    doOneRecoEmotionProcess() {
-        var f = this.folderSelectComp.loadedFiles[this.doneProgressCount];
+    doOneRecoEmotionProcess(f) {
         var reader: FileReader = new FileReader();
         reader.onloadend = (e) => {
             var image = new Image(reader.result);
@@ -163,6 +162,19 @@ export class FaceRecoEmotionComponent implements OnInit {
                     if (this.progress == 100) {
                         this.doneProgress = true;
                     }
+                })
+                .catch((ex) => {
+                    this.csvContentStr += image.name + "," +
+                        "err" + "," +
+                        "err" + "," +
+                        "err" + "," +
+                        "err" + "," +
+                        "err" + "\n";
+                    this.doneProgressCount += 1;
+                    this.progress = this.doneProgressCount / this.folderSelectComp.loadedFiles.length * 100;
+                    if (this.progress == 100) {
+                        this.doneProgress = true;
+                    }
                 });
         };
         reader.readAsDataURL(f);
@@ -180,8 +192,8 @@ export class FaceRecoEmotionComponent implements OnInit {
     // フォルダモードにおいて、複数画像をシリアルに処理する
     async doMultiRecoEmotionSerialProcess() {
         for (let f of this.folderSelectComp.loadedFiles) {
-            this.doOneRecoEmotionProcess();
-            await this.sleep(300, 10)
+            this.doOneRecoEmotionProcess(f);
+            await this.sleep(1000, 10)
         }
     }
 
@@ -203,7 +215,7 @@ export class FaceRecoEmotionComponent implements OnInit {
     onClearClick(): void {
         this.csvContentStr = "";
         this.doneProgressCount = 0;
-        this.progress = this.doneProgressCount / this.folderSelectComp.loadedFiles.length * 100;
+        this.progress = 0;
         this.doneProgress = false;
     }
 

@@ -103,41 +103,26 @@ export class ImageService {
             .catch(this.handleError);
     }
 
-    recoEmotion(images: Array<Image>): Promise<any> {
-        let headers = new Headers({});
-        let options = new RequestOptions({headers});
-        let reqData: any;
-
-        var formData = new FormData();
-        for (var i = 0; i < images.length; i++) {
-            console.log(images[i]);
-            // Remove "data: image/jpeg; base64, "
-            let data = images[i].getData().replace(/^.*,/, '');
-            formData.append('image' + (i + 1), data);
-        }
-        reqData = formData;
-
-        // return this.postImages(images, this.recoemotionUrl)
-        return this.http.post(this.recoemotionUrl, reqData, options)
+    recoEmotion(images): Promise<any> {
+        return this.postImages(images, this.recoemotionUrl)
             .toPromise()
             .then(res => res.json())
             .catch(this.handleError);
     }
 
-    // recoEmotion(images Array<Image>): Promise<any> {
+    // recoEmotion(images: Array<Image>): Promise<any> {
     //     let headers = new Headers({});
     //     let options = new RequestOptions({headers});
     //     let reqData: any;
     //
     //     var formData = new FormData();
     //     for (var i = 0; i < images.length; i++) {
+    //         console.log(images[i]);
     //         // Remove "data: image/jpeg; base64, "
-    //         console.log(images[i].data);
-    //         let data = images[i].data.replace(/^.*,/, '');
+    //         let data = images[i].getData().replace(/^.*,/, '');
     //         formData.append('image' + (i + 1), data);
     //     }
     //     reqData = formData;
-    //     console.log("hey");
     //
     //     // return this.postImages(images, this.recoemotionUrl)
     //     return this.http.post(this.recoemotionUrl, reqData, options)
